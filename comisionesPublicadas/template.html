@@ -23,7 +23,7 @@
   <td><?=$d["comision"]->tramo("/")?> (<?=$d["plan"]->orientacion()?>) <?=$d["comision"]->aperturaText()?></td>
   <td><?=$d["coordinador"]->nombrePrincipal()?></td>
   <td><?=$d["comision"]->comentario()?></td>
-  <td><a href="<?=PATH_HTTP_SITE?>horarios.php?id=<?=$d['comision']->id()?>"><?=$d["comision"]->horario()?></a></td>  
+  <td><a href="<?=PATH_HTTP_SITE?>horariosComision/?id=<?=$d['comision']->id()?>"><?=$d["comision"]->horario()?></a></td>  
 </tr>
 <?endfor;?>
   </tbody>
