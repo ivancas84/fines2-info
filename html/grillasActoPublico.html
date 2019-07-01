@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<!-- saved from url=(0039)http://marcelagalante.com.ar/jornada71/ -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8">
+<title>FINES 2</title>
+<style>
+
+table {
+
+
+}
+
+table, td, tr, th{
+  padding: 5px;
+  border-collapse: collapse;
+    border: 1px solid black;
+
+}
+  
+.simple_border{
+    border: 1px solid black;
+}
+
+.borde_separador {
+  border-top: 2px solid red;
+}
+
+@media print
+{
+  table { page-break-after:always }
+
+}
+
+
+
+</style>
+</head>
+<body>
+
+
+<?php
+
+  $asignatura = null;
+  $exists = false;
+
+  foreach($rows as $row):
+
+
+    
+    if($row["asignatura"] != $asignatura):
+      if($exists) echo "</table><br><br>";
+      $asignatura = $row["asignatura"]; 
+      echo "
+    <table>
+    <tr><th>MATERIA</th><th colspan=\"4\">" . $row["asignatura"] . "</th><th>CODIGO/PERFIL</th><th colspan=\"3\">" . $row["codigo"] . "/" . $row["perfil"] . "</th></tr>
+    <tr><th>SEDE</th><th>DIRECCION</th><th>COMISION</th><th>HC</th><th>DIAS Y HORARIOS</th><th>DOCENTE</th><th>LISTADO</th></tr>
+";
+
+      endif;
+       
+    
+      echo "<tr>
+      <td>" . $row["numero_sede"] . " - 56</td>
+      <td>" . $row["calle"] . " e/ " . $row["entre"] . " Nº " . $row["numero_domicilio"] . " " . $row["barrio"] . " " . $row["localidad"] . "</td>
+      <td>" . $row["anio"] . " / " . $row["semestre"] . " - " . $row["serie"] . "</td>
+      <td>" . $row["horas_catedra"] . "</td>
+      <td>" . $row["horario"] . "</td>
+      <td></td>
+      <td></td>        
+    </tr>";       
+
+    $exists = true;
+
+  endforeach;
+
+?>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,13 @@
+<form class="form-inline"  method="GET">
+    <label for="search">Orden:</label>
+    <label for="orden">Orden:</label>
+    <select name="orden" class="form-control">
+      <? foreach(ordenamientos() as $opt): $selected = ($opt == $orden) ? 'selected="selected"' : ""; ?>
+        <option value="<?=$opt?>" <?=$selected?>><?=$opt?></option>
+      <? endforeach; ?>
+    </select>
+    <input type="hidden" name="fecha_anio" class="form-control" id="fecha_anio" value=<?=$fechaAnio?>>
+    <input type="hidden" name="fecha_semestre" class="form-control" id="orden" value=<?=$fechaSemestre?>>
+    <input type="hidden" name="dependencia" class="form-control" id="orden" value=<?=$dependencia?>>
+    <button type="submit" class="btn btn-primary">Buscar</button>
+</form>

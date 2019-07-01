@@ -1,0 +1,33 @@
+
+<? foreach($plan_tramo_distribuciones as $id_plan => $tramos):
+  foreach($tramos as $distribuciones): ?>
+
+<table  class="table table-bordered table-hover table-sm border-black">
+  <thead class="thead-light">
+    <tr>
+      <td><strong>PLAN</strong></td>
+      <td><strong>TRAMO</strong></td>
+      <td><strong>ASIGNATURA</strong></td>
+      <td><strong>CODIGO</strong></td>
+      <td><strong>DIA</strong></td>
+      <td><strong>HORAS_CATEDRA</strong></td>
+    </tr>
+  </thead>
+  <tbody>
+<?      foreach($distribuciones as $distribucion):   
+      $d = DistribucionHorariaSqlo::getInstance()->values($distribucion); ?>
+      <tr>
+          <td><?=$d["plan"]->resolucion()?> <?=$d["plan"]->orientacion()?></td>
+          <td><?=$d["carga_horaria"]->anio()?>/<?=$d["carga_horaria"]->semestre()?></td>
+          <td><?=$d["asignatura"]->nombre()?></td>
+          <td><?=$d["asignatura"]->codigo()?></td>
+          <td><?=$d["distribucion_horaria"]->dia()?></td>
+          <td><?=$d["distribucion_horaria"]->horasCatedra()?></td>
+
+      </tr>
+<? endforeach; ?>      
+</tbody>
+</table>  
+<? endforeach; endforeach; ?>
+
+

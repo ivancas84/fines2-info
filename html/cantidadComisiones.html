@@ -1,0 +1,29 @@
+<table class="table table-striped table-bordered table-hover table-sm border-black">
+  <thead class="thead-light">
+    <tr>
+      <th>AÑO</th>
+      <th>CUATRIMESTRE</th>
+      <th>COMISIONES</th>      
+    </tr>
+  </thead>
+  <tbody>
+<? for($i = 0; $i < count($comisiones); $i++):
+  $row = $comisiones[$i]; 
+  $total += intval($row["cantidad"]);?>
+<tr>
+
+  <td><?=$row["anio"]?></td>
+  <td><?=$row["semestre"]?></td>
+  <td><?=$row["cantidad"]?></td>
+</tr>
+<?endfor;?>
+    <tr>
+      <th colspan="2">TOTAL COMISIONES</th>
+      <th><?=$total?></th>
+    </tr>
+    <tr>
+      <th colspan="2">TOTAL SEDES</th>
+      <th><?=$sedes?></th>
+    </tr>
+  </tbody>
+</table>

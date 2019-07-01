@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8">
+<title>GRILLAS SAD</title>
+<style>
+
+table, td, tr, th{
+  padding: 5px;
+  border-collapse: collapse;
+    border: 1px solid black;
+
+}
+  
+.simple_border{
+    border: 1px solid black;
+}
+
+.borde_separador {
+  border-top: 2px solid red;
+}
+
+@media print
+{
+  table { page-break-after:always }
+
+}
+
+
+
+</style>
+</head>
+<body>
+<table>
+
+<? foreach($asignaturas_cursos as $ida => $cursos):  $c = CursoSqlo::getInstance()->values($cursos[0]); ?>
+  <tr><th>MATERIA</th><th colspan="4"><?=$c["asignatura"]->nombre()?></th><th>CODIGO/PERFIL</th><th><?=$c["asignatura"]->codigo()?>/<?=$c["asignatura"]->perfil()?></th></tr>
+  <tr><th>SEDE</th><th>DIRECCION</th><th>COMISION</th><th>HC</th><th>DIAS Y HORARIOS</th><th>DOCENTE</th><th>LISTADO</th></tr>
+  <? foreach($cursos as $curso): $d = CursoSqlo::getInstance()->values($curso); ?>
+  <tr>
+    <td><?=$d["sede"]->numero()?> - <?=numero_dependencia_abr_id($d["sede"]->dependencia())?></td>
+    <td><?=$d["domicilio"]->label()?></td>
+    <td><?=$d["comision"]->anio()?>/<?=$d["comision"]->semestre()?> - <?=$d["division"]->serie()?></td>
+    <td><?=$d["carga_horaria"]->horasCatedra()?></td>
+    <td><?=$d["curso"]->horario()?></td>
+    <td></td>
+    <td></td> 
+  </tr>
+  <? endforeach; ?>
+<? endforeach; ?>
+</table>
+
+</body>
+</html>
+

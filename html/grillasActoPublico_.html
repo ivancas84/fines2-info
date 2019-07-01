@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<!-- saved from url=(0039)http://marcelagalante.com.ar/jornada71/ -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8">
+<title>FINES 2</title>
+<style>
+
+table {
+
+
+}
+
+table, td, tr, th{
+  padding: 5px;
+  border-collapse: collapse;
+    border: 1px solid black;
+
+}
+
+.simple_border{
+    border: 1px solid black;
+}
+
+.borde_separador {
+  border-top: 2px solid red;
+}
+
+@media print
+{
+  table { page-break-after:always }
+
+}
+
+
+
+</style>
+</head>
+<body>
+
+
+<?php
+
+  $asignatura_ = null;
+  $exists = false;
+
+  foreach($rows as $row):
+    $curso = new CursoValues($row);
+    $asignatura = new AsignaturaValues($row["carga_horaria_"]["asignatura_"]);
+    $cargaHoraria = new CargaHorariaValues($row["carga_horaria_"]);
+    $comision = new ComisionValues($row["comision_"]);
+    $sede = new SedeValues($row["comision_"]["division_"]["sede_"]);
+    $division = new DivisionValues($row["comision_"]["division_"]);
+    $domicilio = new DomicilioValues($row["comision_"]["division_"]["sede_"]["domicilio_"]);
+
+    if(!$asignatura_ || ($asignatura->nombre != $asignatura_->nombre)):
+      if($exists) echo "</table><br><br>";
+      $asignatura_ = $asignatura;
+      echo "
+    <table>
+    <tr><th>MATERIA</th><th colspan=\"4\">" . $asignatura->nombre() . "</th><th>CODIGO/PERFIL</th><th colspan=\"3\">" . $asignatura->codigo() . "/" . $asignatura->perfil() . "</th></tr>
+    <tr><th>SEDE</th><th>DIRECCION</th><th>COMISION</th><th>HC</th><th>DIAS Y HORARIOS</th><th>DOCENTE</th><th>LISTADO</th></tr>
+";
+
+      endif;
+
+
+      echo "<tr>
+      <td>" . $sede->numero() . " - 56</td>
+      <td>" . $domicilio->label() . "</td>
+      <td>" . $comision->tramo('/') . " - " . $division->serie() . "</td>
+      <td>" . $cargaHoraria->horasCatedra() . "</td>
+      <td>" . $curso->horario() . "</td>
+      <td></td>
+      <td></td>
+    </tr>";
+
+    $exists = true;
+
+  endforeach;
+
+?>
+
+</body>
+</html>

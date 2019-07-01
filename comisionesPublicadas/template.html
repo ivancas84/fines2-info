@@ -1,0 +1,30 @@
+<?require_once("./_formulario.html");?>
+<table class="table table-striped table-bordered table-hover table-sm border-black">
+  <thead class="thead-light">
+    <tr>
+    <th>#</th>
+    <th>COMISION</th>
+    <th>SEDE</th>
+    <th>DOMICILIO</th>
+    <th>TRAMO</th>
+    <th>COORDINADOR</th>
+    <th>PENDIENTE</th>
+    <th>HORARIOS</th>
+    </tr>
+  </thead>
+  <tbody>
+<? for($i = 0; $i < count($comisiones); $i++): $d = ComisionSqlo::getInstance()->values($comisiones[$i]); ?>
+
+<tr class="<?=$d['comision']->background()?>">
+  <td><?=$i+1?></td>
+  <td><strong><big><?=$d["division"]->numero() . "/" . $d["comision"]->tramo()?></big></strong></td>
+  <td><?=$d["sede"]->nombre()?><strong>(<?=$d["sede"]->numero()?>)</strong></td>
+  <td class='simple_border'><?=$d["domicilio"]->label()?></td>
+  <td><?=$d["comision"]->tramo("/")?> (<?=$d["plan"]->orientacion()?>) <?=$d["comision"]->aperturaText()?></td>
+  <td><?=$d["coordinador"]->nombrePrincipal()?></td>
+  <td><?=$d["comision"]->comentario()?></td>
+  <td><a href="<?=PATH_HTTP_SITE?>horarios.php?id=<?=$d['comision']->id()?>"><?=$d["comision"]->horario()?></a></td>  
+</tr>
+<?endfor;?>
+  </tbody>
+</table>

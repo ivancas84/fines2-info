@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8">
+<title>GRILLAS SAD</title>
+<style>
+
+table, td, tr, th{
+  padding: 5px;
+  border-collapse: collapse;
+    border: 1px solid black;
+
+}
+  
+.simple_border{
+    border: 1px solid black;
+}
+
+.borde_separador {
+  border-top: 2px solid red;
+}
+
+@media print
+{
+  table { page-break-after:always }
+
+}
+
+
+
+</style>
+</head>
+<body>
+
+
+<?php
+
+  $asignatura = null;
+  $exists = false;
+
+  foreach($cursos as $curso):
+    $d = get_data($curso);
+
+    if($d["asignatura"]->id() != $asignatura):
+      $asignatura = $d["asignatura"]->id(); 
+      if($exists): ?>
+       </table><br><br>
+<?    endif; ?>
+
+    <table>
+    <tr><th>MATERIA</th><th colspan="4"><?=$d["asignatura"]->nombre()?></th><th>CODIGO/PERFIL</th><th colspan="3"><?=$d["asignatura"]->codigo()?>/<?=$d["asignatura"]->perfil()?></th></tr>
+    <tr><th>SEDE</th><th>DIRECCION</th><th>COMISION</th><th>HC</th><th>DIAS Y HORARIOS</th><th>DOCENTE</th><th>LISTADO</th></tr>
+<?  endif;?>
+    <tr>
+      <td><?=$d["sede"]->numero()?> - 56</td>
+      <td><?=$d["domicilio"]->label()?></td>
+      <td><?=$d["comision"]->anio()?>/<?=$d["comision"]->semestre()?> - <?=$d["division"]->serie()?></td>
+      <td><?=$d["carga_horaria"]->horasCatedra()?></td>
+      <td><?=$d["curso"]->horario()?></td>
+      <td></td>
+      <td></td>        
+    </tr>      
+<? $exists = true;
+  endforeach; ?>
+</body>
+</html>
+
