@@ -4,6 +4,27 @@ require_once("class/model/Data.php");
 require_once("config/valuesClasses.php");
 require_once("function/array_combine_key.php");
 
+$idComision = $_GET["id"];
+$title = "Horarios Comision";
+
+$filtros = [
+    ["cur_comision", "=", $idComision],
+];
+
+$render = new Render();
+$render->setAdvanced($filtros);
+$render->setOrder(["dia_numero" => "ASC", "hora_inicio" => "ASC"]);
+
+$sql = HorarioSqlo::getInstance()->all($render);
+$horarios = Dba::fetchAll($sql);
+$d = HorarioSqlo::getInstance()->values($horarios[0]);
+
+
+$title = "Horarios comisión";
+$content = "horariosComision/template.html";
+require_once("index/menu.html");
+
+
 
 function get_main_data($d){
   return [
@@ -59,21 +80,3 @@ function get_data($d){
 
 }
 
-$idComision = $_GET["id"];
-$title = "Horarios Comision";
-
-$filtros = [
-    ["cur_comision", "=", $idComision],
-];
-
-$render = new Render();
-$render->setAdvanced($filtros);
-$render->setOrder(["dia_numero" => "ASC", "hora_inicio" => "ASC"]);
-
-$horarios = Dba::all("horario",$render);
-$d = get_main_data($horarios[0]);
-
-
-$title = "Horarios comisión";
-$content = "horariosComision/template.html";
-require_once("index/menu.html");
