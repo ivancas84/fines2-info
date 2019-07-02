@@ -12,10 +12,7 @@
   <td><?=$h["asignatura"]->nombre()?> (<?=$h["carga_horaria"]->horasCatedra()?> / <?=$h["carga_horaria"]->horasReloj()?>)</td>
   <td><?=$h["dia"]->dia()?></td>
   <td><?=$h["horario"]->horaInicio()?> a <?=$h["horario"]->horaFin()?></td>
-  <td><?=$h["docente"]?></td>
-
-
+  <td><?=$h["profesor"]->descripcion() ?? "Sin Docente"?></td>
 </tr>
-
 <?endfor;?>
 </table>

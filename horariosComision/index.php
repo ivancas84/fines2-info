@@ -25,6 +25,11 @@ $content = "horariosComision/template.html";
 require_once("index/menu.html");
 
 
+function profesor(IdPersonaValues $profesor){
+  if(empty($profesor->nombrePrincipal("Xx Yy"))) return "Sin docente";
+  return $profesor->nombrePrincipal("Xx Yy") . " (DNI TERMINA: " . substr($profesor->numeroDocumento(), -3) . ")";
+}
+
 
 function get_main_data($d){
   return [
