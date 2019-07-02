@@ -26,7 +26,7 @@ require_once("index/menu.html");
 
 
 function profesor(IdPersonaValues $profesor){
-  if(empty($profesor->nombrePrincipal("Xx Yy"))) return "Sin docente";
+  if(empty($profesor->nombrePrincipal("Xx Yy"))) return null;
   return $profesor->nombrePrincipal("Xx Yy") . " (DNI TERMINA: " . substr($profesor->numeroDocumento(), -3) . ")";
 }
 
