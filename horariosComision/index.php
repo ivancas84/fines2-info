@@ -12,7 +12,7 @@ $filtros = [
 ];
 
 $render = new Render();
-$render->setAdvanced($filtros);
+$render->setCondition($filtros);
 $render->setOrder(["dia_numero" => "ASC", "hora_inicio" => "ASC"]);
 
 $sql = HorarioSqlo::getInstance()->all($render);

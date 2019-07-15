@@ -21,7 +21,7 @@ if($dependencia) array_push($filtros, ["com_dvi_sed_dependencia", "=", id_depend
 
 
 $render = new Render();
-$render->setAdvanced($filtros);
+$render->setCondition($filtros);
 $render->setOrder(["ch_asi_nombre" => "ASC", "com_dvi_sed_numero" => "ASC", "com_tramo" => "ASC" ]);
 
 $cursos = Dba::fetchAll(CursoSqlo::getInstance()->all($render));
