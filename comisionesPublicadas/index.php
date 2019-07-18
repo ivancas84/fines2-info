@@ -19,7 +19,7 @@ $dependencia = (!empty($_GET["dependencia"])) ? $_GET["dependencia"] : "456";
 $orden =  (!empty($_GET["orden"])) ? $_GET["orden"] : "sede";
 
 $render = new Render();
-$render->setAdvanced(filtros($fechaAnio, $fechaSemestre, $dependencia));
+$render->setCondition(filtros($fechaAnio, $fechaSemestre, $dependencia));
 $render->setOrder(orden($orden));
 
 $sql = ComisionSqlo::getInstance()->all($render);
