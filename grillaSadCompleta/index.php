@@ -10,6 +10,8 @@ $fechaAnio = (!empty($_GET["fecha_anio"])) ? $_GET["fecha_anio"] : 2019;
 $fechaSemestre = (!empty($_GET["fecha_semestre"])) ? $_GET["fecha_semestre"] : 1;
 $dependencia = (!empty($_GET["dependencia"])) ? $_GET["dependencia"] : null;
 $comision = (!empty($_GET["comision"])) ? $_GET["comision"] : null;
+$pendiente = (!empty($_GET["pendiente"])) ? true : false;
+
 $filtros = [
     ["com_fecha_anio", "=", $fechaAnio],
     ["com_fecha_semestre", "=", $fechaSemestre],
@@ -18,6 +20,7 @@ $filtros = [
     //["horario","=",true]
 ];
 
+if($pendiente) array_push($filtros, ["toma_activa", "=", false]);
 if($dependencia) array_push($filtros, ["com_dvi_sed_dependencia", "=", id_dependencia_numero($dependencia)]);
 if($comision) array_push($filtros, ["com_id", "=", $comision]);
 
