@@ -4,14 +4,13 @@
 <title>GRILLAS SAD</title>
 <style>
 
-table, td, tr, th{
+table, td, tr, th {
   padding: 5px;
   border-collapse: collapse;
     border: 1px solid black;
-
 }
   
-.simple_border{
+.simple_border {
     border: 1px solid black;
 }
 
@@ -19,20 +18,17 @@ table, td, tr, th{
   border-top: 2px solid red;
 }
 
-@media print
-{
+@media print {
   table { page-break-after:always }
 
 }
 
-
-
 </style>
 </head>
 <body>
-<table>
 
 <? foreach($asignaturas_cursos as $ida => $cursos):  $c = CursoSqlo::getInstance()->values($cursos[0]); ?>
+<table>
   <tr><th>MATERIA</th><th colspan="4"><?=$c["asignatura"]->nombre()?></th><th>CODIGO/PERFIL</th><th><?=$c["asignatura"]->codigo()?>/<?=$c["asignatura"]->perfil()?></th></tr>
   <tr><th>SEDE</th><th>DIRECCION</th><th>COMISION</th><th>HC</th><th>DIAS Y HORARIOS</th><th>DOCENTE</th><th>LISTADO</th></tr>
   <? foreach($cursos as $curso): $d = CursoSqlo::getInstance()->values($curso); ?>
@@ -46,8 +42,10 @@ table, td, tr, th{
     <td></td> 
   </tr>
   <? endforeach; ?>
-<? endforeach; ?>
 </table>
+<br>
+<? endforeach; ?>
+
 
 </body>
 </html>
