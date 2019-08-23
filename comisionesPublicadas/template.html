@@ -13,7 +13,7 @@
     </tr>
   </thead>
   <tbody>
-<? for($i = 0; $i < count($comisiones); $i++): $d = ComisionSqlo::getInstance()->values($comisiones[$i]); ?>
+<? for($i = 0; $i < count($comisiones); $i++): $d = EntitySqlo::getInstanceRequire("comision")->values($comisiones[$i]); ?>
 
 <tr class="<?=$d['comision']->background()?>">
   <td><?=$i+1?></td>

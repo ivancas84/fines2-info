@@ -27,11 +27,11 @@ table, td, tr, th {
 </head>
 <body>
 
-<? foreach($asignaturas_cursos as $ida => $cursos):  $c = CursoSqlo::getInstance()->values($cursos[0]); ?>
+<? foreach($asignaturas_cursos as $ida => $cursos):  $c = EntitySqlo::getInstanceRequire("curso")->values($cursos[0]); ?>
 <table>
   <tr><th>MATERIA</th><th colspan="4"><?=$c["asignatura"]->nombre()?></th><th>CODIGO/PERFIL</th><th><?=$c["asignatura"]->codigo()?>/<?=$c["asignatura"]->perfil()?></th></tr>
   <tr><th>SEDE</th><th>DIRECCION</th><th>COMISION</th><th>HC</th><th>DIAS Y HORARIOS</th><th>DOCENTE</th><th>LISTADO</th></tr>
-  <? foreach($cursos as $curso): $d = CursoSqlo::getInstance()->values($curso); ?>
+  <? foreach($cursos as $curso): $d = EntitySqlo::getInstanceRequire("curso")->values($curso); ?>
   <tr>
     <td><?=$d["sede"]->numero()?> - <?=numero_dependencia_abr_id($d["sede"]->dependencia())?></td>
     <td><?=$d["domicilio"]->label()?></td>

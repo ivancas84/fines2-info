@@ -15,7 +15,7 @@
   </thead>
   <tbody>
 <?      foreach($distribuciones as $distribucion):   
-      $d = DistribucionHorariaSqlo::getInstance()->values($distribucion); ?>
+      $d = EntitySqlo::getInstanceRequire("distribucion_horaria")->values($distribucion); ?>
       <tr>
           <td><?=$d["plan"]->resolucion()?> <?=$d["plan"]->orientacion()?></td>
           <td><?=$d["carga_horaria"]->anio()?>/<?=$d["carga_horaria"]->semestre()?></td>

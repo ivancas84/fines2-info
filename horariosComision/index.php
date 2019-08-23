@@ -1,7 +1,7 @@
 <?php
 require_once("../config/config.php");
 require_once("class/model/Data.php");
-require_once("config/valuesClasses.php");
+require_once("class/model/Values.php");
 require_once("function/array_combine_key.php");
 
 $idComision = $_GET["id"];
@@ -15,9 +15,9 @@ $render = new Render();
 $render->setCondition($filtros);
 $render->setOrder(["dia_numero" => "ASC", "hora_inicio" => "ASC"]);
 
-$sql = HorarioSqlo::getInstance()->all($render);
+$sql = EntitySqlo::getInstanceRequire("horario")->all($render);
 $horarios = Dba::fetchAll($sql);
-$d = HorarioSqlo::getInstance()->values($horarios[0]);
+$d = EntitySqlo::getInstanceRequire("horario")->values($horarios[0]);
 
 
 $title = "Horarios comisión";

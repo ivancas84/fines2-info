@@ -30,7 +30,7 @@ $render = new Render();
 $render->setCondition($filtros);
 $render->setOrder(["ch_asi_nombre" => "ASC", "com_dvi_sed_numero" => "ASC", "com_tramo" => "ASC" ]);
 
-$cursos = Dba::fetchAll(CursoSqlo::getInstance()->all($render));
+$cursos = Dba::fetchAll(EntitySqlo::getInstanceRequire("curso")->all($render));
 $asignaturas_cursos = array_group_value($cursos, "ch_asignatura");
 
 

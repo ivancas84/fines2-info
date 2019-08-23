@@ -22,7 +22,7 @@ $render = new Render();
 $render->setCondition(filtros($fechaAnio, $fechaSemestre, $dependencia));
 $render->setOrder(orden($orden));
 
-$sql = ComisionSqlo::getInstance()->all($render);
+$sql = EntitySqlo::getInstanceRequire("comision")->all($render);
 $comisiones = Dba::fetchAll($sql);
 
 $content = "comisionesPublicadas/template.html";
