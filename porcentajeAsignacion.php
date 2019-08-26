@@ -4,7 +4,7 @@ require_once("class/model/Dba.php");
 
 
 $dba = new Dba();
-$sql = EntitySqlo::getInstanceFromString("asignatura")->cantidadesCursosPublicados($fecha);
+$sql = EntitySqlo::getInstanceString("asignatura")->cantidadesCursosPublicados($fecha);
 $rows = Dba::fetchAll($sql);
 
 

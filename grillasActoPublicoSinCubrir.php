@@ -13,7 +13,7 @@ $db = Dba::dbInstance();
 try {
   $result = $db->query($sql);
   $rows_ = $db->fetchAll($result);
-  $rows = EntitySql::getInstanceFromString("curso")->jsonAll($rows_);
+  $rows = EntitySql::getInstanceString("curso")->jsonAll($rows_);
 } finally {
   Dba::dbClose();
 }
